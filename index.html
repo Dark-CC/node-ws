@@ -1,722 +1,587 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
+    <title>美丽风景画廊 - 大自然的鬼斧神工</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/v4-shims.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36B37E',
+                        accent: '#FF5630',
+                        nature: '#2D7D32',
+                        earth: '#8D6E63',
+                        sky: '#1E88E5'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
             }
         }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
+            .glass-effect {
+                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            .parallax {
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
-            
-            nav ul.active {
-                display: flex;
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
+            .hover-scale {
+                transition: transform 0.3s ease;
             }
-            
-            .mobile-menu {
-                display: block;
+            .hover-scale:hover {
+                transform: scale(1.05);
             }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+<body class="font-inter bg-gradient-to-br from-sky-50 to-green-50">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full z-50 glass-effect transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <i class="fa fa-mountain text-2xl text-primary"></i>
+                    <span class="text-xl font-bold text-white text-shadow">风景画廊</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-primary transition-colors duration-300">首页</a>
+                    <a href="#gallery" class="text-white hover:text-primary transition-colors duration-300">画廊</a>
+                    <a href="#types" class="text-white hover:text-primary transition-colors duration-300">风景类型</a>
+                    <a href="#quotes" class="text-white hover:text-primary transition-colors duration-300">名言</a>
+                    <a href="#contact" class="text-white hover:text-primary transition-colors duration-300">联系我们</a>
+                </div>
+                <button class="md:hidden text-white" id="menu-toggle">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
+    <!-- 移动端菜单 -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="mobile-menu">
+        <div class="glass-effect h-full w-64 p-6">
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-xl font-bold text-white">菜单</span>
+                <button id="close-menu" class="text-white">
+                    <i class="fa fa-times text-xl"></i>
+                </button>
             </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
+            <div class="space-y-4">
+                <a href="#home" class="block text-white hover:text-primary transition-colors duration-300">首页</a>
+                <a href="#gallery" class="block text-white hover:text-primary transition-colors duration-300">画廊</a>
+                <a href="#types" class="block text-white hover:text-primary transition-colors duration-300">风景类型</a>
+                <a href="#quotes" class="block text-white hover:text-primary transition-colors duration-300">名言</a>
+                <a href="#contact" class="block text-white hover:text-primary transition-colors duration-300">联系我们</a>
             </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
+        </div>
+    </div>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+        <div class="absolute inset-0 parallax" style="background-image: url('https://aka.doubaocdn.com/s/TaFl1vc3bM');"></div>
+        
+        <div class="relative z-20 text-center px-4">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 text-shadow animate-fade-in">
+                大自然的鬼斧神工
+            </h1>
+            <p class="text-xl md:text-2xl text-white mb-8 text-shadow max-w-3xl mx-auto">
+                探索地球上最壮丽的自然景观，感受大自然的神奇与美丽
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToSection('gallery')" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                    <i class="fa fa-camera mr-2"></i>浏览画廊
+                </button>
+                <button onclick="scrollToSection('types')" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-3 rounded-full font-medium transition-all duration-300">
+                    <i class="fa fa-compass mr-2"></i>探索风景
+                </button>
             </div>
+        </div>
+
+        <!-- 滚动提示 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <i class="fa fa-chevron-down text-white text-2xl"></i>
         </div>
     </section>
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
+    <!-- 画廊区域 -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">风景画廊</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    欣赏大自然最美丽的瞬间，每一幅都是大自然的杰作
+                </p>
             </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 图片1 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="https://aka.doubaocdn.com/s/TaFl1vc3bM" alt="雪山湖泊日出" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold mb-2">雪山湖泊日出</h3>
+                            <p class="text-sm">金色阳光洒在平静的湖面上，雪山倒映其中，宛如仙境</p>
+                        </div>
                     </div>
                 </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
+
+                <!-- 图片2 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="https://aka.doubaocdn.com/s/6uuy1vc3bM" alt="森林瀑布" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold mb-2">森林瀑布</h3>
+                            <p class="text-sm">清澈的瀑布从山间倾泻而下，周围是郁郁葱葱的绿色森林</p>
+                        </div>
                     </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
+                </div>
+
+                <!-- 图片3 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="https://aka.doubaocdn.com/s/JRej1vc3bM" alt="海滩夕阳" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold mb-2">海滩夕阳</h3>
+                            <p class="text-sm">金色沙滩与蔚蓝大海交相辉映，夕阳西下美不胜收</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图片4 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="https://aka.doubaocdn.com/s/IPlw1vc3bM" alt="雪山草原" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold mb-2">雪山草原</h3>
+                            <p class="text-sm">雄伟的雪山群峰下，绿色草原如地毯般铺展</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图片5 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="https://aka.doubaocdn.com/s/jTBO1vc3bN" alt="森林溪流" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold mb-2">森林溪流</h3>
+                            <p class="text-sm">阳光透过树叶洒下，形成美丽的光束，小溪蜿蜒流过</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图片6 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-lg hover-scale">
+                    <img src="https://aka.doubaocdn.com/s/wab01vc3bM" alt="峡谷河流" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold mb-2">峡谷河流</h3>
+                            <p class="text-sm">红色岩石峭壁与蓝色河流形成鲜明对比，大自然的鬼斧神工</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+    <!-- 风景类型 -->
+    <section id="types" class="py-20 bg-gradient-to-br from-blue-50 to-green-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">风景类型</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    了解不同类型的自然风景，感受大自然的多样性和神奇魅力
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 山水景观 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover-scale">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-mountain text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">山水景观</h3>
+                    <p class="text-gray-600">
+                        雄伟的山脉、清澈的湖泊、壮观的瀑布，构成了最经典的自然风景
+                    </p>
+                </div>
+
+                <!-- 森林景观 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover-scale">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-tree text-2xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">森林景观</h3>
+                    <p class="text-gray-600">
+                        茂密的森林、参天的古树、丰富的生物多样性，是大自然的绿色宝库
+                    </p>
+                </div>
+
+                <!-- 海洋景观 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover-scale">
+                    <div class="w-16 h-16 bg-sky/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-tint text-2xl text-sky"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">海洋景观</h3>
+                    <p class="text-gray-600">
+                        蔚蓝的大海、金色的沙滩、壮观的海浪，展现了海洋的辽阔与美丽
+                    </p>
+                </div>
+
+                <!-- 沙漠景观 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover-scale">
+                    <div class="w-16 h-16 bg-earth/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-sun-o text-2xl text-earth"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">沙漠景观</h3>
+                    <p class="text-gray-600">
+                        广袤的沙漠、奇特的沙丘、顽强的生命，展现了极端环境中的美丽
+                    </p>
+                </div>
+            </div>
+
+            <!-- 更多风景类型 -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 草原景观 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover-scale">
+                    <div class="w-16 h-16 bg-nature/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-leaf text-2xl text-nature"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">草原景观</h3>
+                    <p class="text-gray-600">
+                        辽阔的草原、成群的牛羊、蓝天白云，展现了牧民生活的诗意画卷
+                    </p>
+                </div>
+
+                <!-- 峡谷景观 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover-scale">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-caret-down text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">峡谷景观</h3>
+                    <p class="text-gray-600">
+                        深邃的峡谷、红色的岩石、蜿蜒的河流，是大自然雕刻的壮丽景观
+                    </p>
+                </div>
+
+                <!-- 极地景观 -->
+                <div class="bg-white rounded-xl shadow-lg p-6 hover-scale">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-snowflake-o text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">极地景观</h3>
+                    <p class="text-gray-600">
+                        冰雪覆盖的大地、极光舞动的天空、独特的极地生物，展现了纯净之美
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+    <!-- 风景名言 -->
+    <section id="quotes" class="py-20 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">风景名言</h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">
+                    让我们听听那些赞美大自然的名言警句，感受人们对自然的热爱
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 名言1 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover-scale">
+                    <i class="fa fa-quote-left text-3xl text-white/50 mb-4"></i>
+                    <p class="text-lg mb-4">
+                        "大自然是最伟大的艺术家，她的作品永远令人惊叹。"
+                    </p>
+                    <p class="text-right font-medium opacity-80">— 约翰·缪尔</p>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
+
+                <!-- 名言2 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover-scale">
+                    <i class="fa fa-quote-left text-3xl text-white/50 mb-4"></i>
+                    <p class="text-lg mb-4">
+                        "山不在高，有仙则名；水不在深，有龙则灵。"
+                    </p>
+                    <p class="text-right font-medium opacity-80">— 刘禹锡</p>
+                </div>
+
+                <!-- 名言3 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover-scale">
+                    <i class="fa fa-quote-left text-3xl text-white/50 mb-4"></i>
+                    <p class="text-lg mb-4">
+                        "森林是地球的肺，我们必须保护好每一片绿色。"
+                    </p>
+                    <p class="text-right font-medium opacity-80">— 未知</p>
+                </div>
+
+                <!-- 名言4 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover-scale">
+                    <i class="fa fa-quote-left text-3xl text-white/50 mb-4"></i>
+                    <p class="text-lg mb-4">
+                        "大海的美丽在于它的辽阔，天空的美丽在于它的深邃。"
+                    </p>
+                    <p class="text-right font-medium opacity-80">— 维克多·雨果</p>
+                </div>
+
+                <!-- 名言5 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover-scale">
+                    <i class="fa fa-quote-left text-3xl text-white/50 mb-4"></i>
+                    <p class="text-lg mb-4">
+                        "每一座山峰都有它的故事，每一条河流都有它的歌声。"
+                    </p>
+                    <p class="text-right font-medium opacity-80">— 威廉·华兹华斯</p>
+                </div>
+
+                <!-- 名言6 -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover-scale">
+                    <i class="fa fa-quote-left text-3xl text-white/50 mb-4"></i>
+                    <p class="text-lg mb-4">
+                        "大自然不需要人类，但人类需要大自然。"
+                    </p>
+                    <p class="text-right font-medium opacity-80">— 大卫·爱登堡</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">联系我们</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    分享您的风景照片，或者告诉我们您最喜欢的自然景观
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-8 shadow-lg">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">姓名</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="请输入您的姓名">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-medium mb-2">邮箱</label>
+                                <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="请输入您的邮箱">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">最喜欢的风景类型</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300">
+                                <option value="">请选择</option>
+                                <option value="mountains">山水景观</option>
+                                <option value="forest">森林景观</option>
+                                <option value="ocean">海洋景观</option>
+                                <option value="desert">沙漠景观</option>
+                                <option value="grassland">草原景观</option>
+                                <option value="canyon">峡谷景观</option>
+                                <option value="polar">极地景观</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">留言</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300" placeholder="分享您的感受或建议..."></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                                <i class="fa fa-paper-plane mr-2"></i>发送留言
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <i class="fa fa-mountain text-2xl text-primary"></i>
+                        <span class="text-xl font-bold">风景画廊</span>
+                    </div>
+                    <p class="text-gray-400">
+                        探索大自然的美丽，感受地球的神奇魅力
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">快速链接</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-primary transition-colors duration-300">首页</a></li>
+                        <li><a href="#gallery" class="hover:text-primary transition-colors duration-300">画廊</a></li>
+                        <li><a href="#types" class="hover:text-primary transition-colors duration-300">风景类型</a></li>
+                        <li><a href="#quotes" class="hover:text-primary transition-colors duration-300">名言</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fa fa-envelope mr-2"></i>contact@scenery.com</li>
+                        <li><i class="fa fa-phone mr-2"></i>+86 123 4567 8910</li>
+                        <li><i class="fa fa-map-marker mr-2"></i>北京市海淀区</li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">关注我们</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 风景画廊. 保留所有权利.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary hover:bg-primary/90 text-white rounded-full shadow-lg transition-all duration-300 transform hover:scale-110 opacity-0 invisible">
+        <i class="fa fa-chevron-up"></i>
+    </button>
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
+    <script>
+        // 平滑滚动函数
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/90', 'shadow-lg');
+                navbar.classList.remove('glass-effect');
+                backToTop.classList.remove('opacity-0', 'invisible');
+            } else {
+                navbar.classList.remove('bg-white/90', 'shadow-lg');
+                navbar.classList.add('glass-effect');
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
+        });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+        // 移动端菜单
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+
+        // 移动端菜单项点击关闭
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // 返回顶部
+        document.getElementById('back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 图片懒加载
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('opacity-100');
+                        img.classList.remove('opacity-0');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => {
+                img.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+                imageObserver.observe(img);
+            });
+        });
+
+        // 表单提交
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢您的留言！我们会尽快回复您。');
+            this.reset();
+        });
+
+        // 初始化动画
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加淡入动画类
+            const animateElements = document.querySelectorAll('.animate-fade-in');
+            animateElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 300);
             });
         });
     </script>
 </body>
-
 </html>
